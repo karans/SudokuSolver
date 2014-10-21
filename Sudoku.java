@@ -34,7 +34,53 @@ public class Sudoku {
 		TODO: attempts to solve the board. Exits when board is solved or no updates were made to the board.
 		*/
 	}
+	public void printBoard() {
+		System.out.println("    1 2 3   4 5 6   7 8 9");
+		System.out.println("  +-------+-------+-------+");
+		char letter = 'A';
+		for (int i = 0; i < 9; i++) {
+			System.out.print(letter + " |");
+			for (int j = 0; j < 3; j++){
+				if (board[i][j] == 0)
+					System.out.printf("  ", board[i][j]);
+				else
+					System.out.printf(" %d", board[i][j]);
+			}
+			System.out.print(" |");
+			for (int j = 3; j < 6; j++){
+				if (board[i][j] == 0)
+					System.out.printf("  ", board[i][j]);
+				else
+					System.out.printf(" %d", board[i][j]);
+			}
+			System.out.print(" |");
+			for (int j = 6; j < 9; j++){
+				if (board[i][j] == 0)
+					System.out.printf("  ", board[i][j]);
+				else
+					System.out.printf(" %d", board[i][j]);
+			}
+			System.out.println(" |");
+			if(letter == 'C' || letter == 'F' || letter == 'I')
+				System.out.println("  +-------+-------+-------+");
+			letter++;
+
+		}
+	}
+	public static int[][] stringToBoard(String s) {
+		int[][] output = new int[9][9];
+		for (int i = 0; i < 9; i++)
+			for (int j = 0; j < 9; j++)
+				output[i][j] = s.charAt((i*9) + j) - 48;
+		return output;
+	}
 	public static void main(String[] args) {
-		//test stuff here
+		//sample argument: 000041000060000200000000000320600000000050040700000000000200300480000000501000000
+		String boardInput = args[0];
+		System.out.println(boardInput);
+		int[][] input = stringToBoard(boardInput);
+		Sudoku s = new Sudoku(input);
+		s.printBoard();
+
 	}
 }
