@@ -73,7 +73,27 @@ public class Sudoku {
 		*/
 	}
 	public boolean nakedSingles() {
-		return true;
+		   boolean[] temp;
+   	int count = 0;
+   	int index = 0;
+   boolean change = false;
+   for (int i = 0; i < 9; i++) {
+     for (int j = 0; j < 9; j++) {
+       temp = candidates(i, j);
+       for (int k = 1; k < 10; k++) {
+         if (temp[k]) {
+           count++;
+           index = k;
+         }
+       }
+         if (count == 1) {
+           this.board[i][j] = index;
+           change = true;
+         }
+         count = 0;
+     }
+   }
+  return change;
 	}
 	public boolean hiddenSingles() {
 		return true;
